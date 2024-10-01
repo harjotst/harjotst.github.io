@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Harjot Singh Tathgur - Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#education">🎓 Education</a></li>
+        <li><a href="#experience">💼 Experience</a></li>
+        <li><a href="#projects">🚀 Projects</a></li>
+        <li><a href="#skills">🛠️ Skills</a></li>
+        <li><a href="#contact">📞 Contact</a></li>
+        <!-- Light/Dark Mode Toggle Button -->
+        <li><button id="mode-toggle">🌞</button></li>
+      </ul>
+      <!-- Hamburger Menu Icon (Visible in mobile view) -->
+      <div
+        class="hamburger"
+        aria-label="Toggle navigation"
+        role="button"
+        tabindex="0"
+      >
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay"></div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top">⬆️</button>
+
+    <!-- Header Section -->
+    <header id="home">
+      <div><img src="./me.jpeg" alt="Me" /></div>
+      <h1 id="name">Harjot Singh Tathgur</h1>
+      <p>
+        👋 Hey there! I'm a computer scientist focusing on software engineering.
+      </p>
+
+      <!-- Social Media Buttons -->
+      <div class="social-media">
+        <a href="https://github.com/harjotst" target="_blank"
+          ><div class="social-icon" id="github-logo"></div
+        ></a>
+        <a href="https://linkedin.com/in/harjot-tathgur" target="_blank"
+          ><div class="social-icon" id="linkedin-logo"></div
+        ></a>
+        <a href="mailto:harjottathgur1@gmail.com" style="font-size: 32px">✉️</a>
+      </div>
+    </header>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h2>🎓 Education</h2>
+      <div class="education-item">
+        <img src="./uw-logo.png" alt="University of Waterloo Logo" />
+        <div class="education-details">
+          <h3>University of Waterloo</h3>
+          <p>Bachelor of Computer Science (Sept 2020 - Apr 2025)</p>
+          <p>
+            📚 Coursework: Artificial Intelligence, Machine Learning, Operating
+            Systems, Computer Networks, Distributed Systems, Concurrency &
+            Parallelism, Computer Graphics.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>💼 Experience</h2>
+
+      <!-- Tesla Experience -->
+      <div class="experience-item">
+        <img src="tesla-logo.png" alt="Tesla Logo" />
+        <div class="experience-details">
+          <h3>Software Engineer Intern @ Tesla</h3>
+          <p>Fremont, CA | Jan 2024 – Present</p>
+          <ul>
+            <li>
+              🚀 Built a system for managing database servers and virtual
+              machines remotely.
+            </li>
+            <li>
+              🔒 Developed a secure API wrapper for Jira using
+              <strong>C#</strong> and <strong>ASP.NET</strong>, enhancing
+              security for internal applications.
+            </li>
+            <li>
+              🤖 Automated ticket monitoring and notifications, improving
+              response time and efficiency.
+            </li>
+            <li>
+              ⚡ Created custom CLIs for data migration, saving man-hours and
+              enhancing performance.
+            </li>
+            <li>
+              ✅ Integrated automated tests into CI/CD pipelines using
+              <strong>Playwright</strong> in <strong>C#</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Manulife Experience -->
+      <div class="experience-item">
+        <img src="manulife-logo.png" alt="Manulife Logo" />
+        <div class="experience-details">
+          <h3>Software Developer Intern @ Manulife Financial Corporation</h3>
+          <p>Waterloo, ON | May 2023 – Aug 2023</p>
+          <ul>
+            <li>
+              🛠️ Automated the transition of report generators to a centralized
+              system.
+            </li>
+            <li>
+              🔑 Implemented authentication and authorization using
+              <strong>Active Directory</strong> and
+              <strong>Entity Framework Core</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Alert Driving Experience -->
+      <div class="experience-item">
+        <img src="alertdriving-logo.png" alt="Alert Driving Logo" />
+        <div class="experience-details">
+          <h3>Software Engineer Intern @ Alert Driving</h3>
+          <p>Toronto, ON | Sep 2022 – Dec 2022</p>
+          <ul>
+            <li>
+              🌐 Developed a multilingual rich text editor for email reports
+              using <strong>HTML</strong>, <strong>CSS</strong>, and
+              <strong>jQuery</strong>.
+            </li>
+            <li>
+              🗄️ Designed a MySQL database schema for efficient storage of
+              multilingual reports.
+            </li>
+            <li>
+              📜 Integrated an email report history tracking system using
+              <strong>PHP</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- University of Waterloo Experience -->
+      <div class="experience-item">
+        <img src="uw-logo.png" alt="University of Waterloo Logo" />
+        <div class="experience-details">
+          <h3>Full Stack Developer Intern @ University of Waterloo</h3>
+          <p>Waterloo, ON | Jan 2022 – Apr 2022</p>
+          <ul>
+            <li>
+              📝 Developed a table component in AngularJS for handling large
+              data sets.
+            </li>
+            <li>
+              🎨 Improved the UI of a TA hiring system by designing components
+              using HTML and CSS.
+            </li>
+            <li>
+              🔄 Streamlined route middleware using .NET Framework and Entity
+              Framework Core.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ellerca Health Corp. Experience -->
+      <div class="experience-item">
+        <img src="ellerca-health-logo.png" alt="Ellerca Health Corp. Logo" />
+        <div class="experience-details">
+          <h3>Full Stack Developer Intern @ Ellerca Health Corp.</h3>
+          <p>Mississauga, ON | May 2021 – Aug 2021</p>
+          <ul>
+            <li>
+              📆 Developed a scheduling platform using <strong>React</strong>,
+              <strong>Express</strong>, and <strong>MongoDB</strong>.
+            </li>
+            <li>
+              💬 Integrated video calling via the <strong>Twilio API</strong>.
+            </li>
+            <li>
+              📊 Added data analytics using the
+              <strong>Segment Analytics API</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>🚀 Projects</h2>
+      <h3>
+        <a href="https://github.com/harjotst/rubiks-cube-solver" target="_blank"
+          >Rubik’s Cube Solver</a
+        >
+      </h3>
+      <ul>
+        <li>
+          🧩 Implemented Richard E. Korf’s iterative deepening A* algorithm with
+          admissible pattern database heuristics to solve a 3x3 Rubik’s cube in
+          an average of 18 moves.
+        </li>
+        <li>
+          ⚙️ Generated three pattern databases totaling over 160 million entries
+          using parallel breadth-first search, reducing generation time by 85%.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>🛠️ Skills</h2>
+      <ul class="skills-list">
+        <li>
+          <strong>Programming Languages:</strong> C, C++, C#, Python,
+          JavaScript, TypeScript, uC++
+        </li>
+        <li>
+          <strong>Libraries and Frameworks:</strong> React, AngularJS, Angular,
+          Express, Mongoose, .NET Framework, ASP.NET Core, Entity Framework
+          Core, Microsoft Graph API, Microsoft Kiota, Playwright
+        </li>
+        <li>
+          <strong>Technologies:</strong> Docker, Kubernetes, Node.js, Git,
+          Microsoft Entra ID, Google Cloud Platform, MySQL, PostgreSQL,
+          Microsoft SQL Server, MongoDB
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>📞 Contact Me (coming soon...)</h2>
+      <!-- <form id="contact-form">
+        <label for="contact-name">👤 Name (Optional)</label>
+        <input type="text" id="contact-name" name="name" />
+
+        <label for="contact-email">✉️ Email (Optional)</label>
+        <input type="email" id="contact-email" name="email" />
+
+        <label for="contact-message">💬 Message</label>
+        <textarea id="contact-message" name="message" required></textarea>
+
+        <button type="submit">Send 📤</button>
+      </form> -->
+    </section>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+  </body>
+</html>
