@@ -212,12 +212,12 @@ body.dark-mode #back-to-top {
 header {
     text-align: center;
     padding-top: 100px;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
 }
 
 header img {
-    width: 250px;
-    height: 250px;
+    max-width: 250px;
+    height: auto;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid #fff;
@@ -280,9 +280,14 @@ header p {
     transform: scale(1.1);
 }
 
+.word {
+    display: inline-block;
+    margin: 0 5px; /* small gap between words */
+}
+
 /* Section Styles */
 section {
-    padding: 3em 10%;
+    padding: 1em 10%;
     opacity: 0;
     transform: translateY(50px);
 }
@@ -361,11 +366,15 @@ section ul li::before {
     flex: 1;
 }
 
+#experience .experience-item:last-of-type {
+    margin-bottom: 0;
+}
+
 /* Education Section */
 .education-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 3em;
+    /* margin-bottom: 3em; */
 }
 
 .education-item img {
@@ -434,5 +443,15 @@ body.dark-mode #contact-form textarea {
 
     .experience-item img, .education-item img {
         margin-bottom: 1em;
+    }
+
+    .word {
+        display: block;
+        margin: 0.25em 0; /* some vertical gap between lines */
+        text-align: center; /* optional, to center each line */
+    }
+
+    section {
+        padding: 0.5em 5%; /* less padding for smaller screens */
     }
 }
