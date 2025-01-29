@@ -21,34 +21,6 @@ modeToggle.addEventListener("click", function () {
   localStorage.setItem("theme", theme);
 });
 
-// Character Animation for Name
-const nameElement = document.getElementById("name");
-const nameText = "Harjot Singh Tathgur";
-nameElement.innerHTML = "";
-
-const spans = [];
-
-// Split the name into characters, including spaces, and wrap each in a span
-nameText.split("").forEach((char, index) => {
-  const span = document.createElement("span");
-  span.textContent = char;
-  nameElement.appendChild(span);
-  spans.push(span);
-});
-
-const frequency = 0.0075; // Adjust this value to change speed (increase for faster)
-const amplitude = 5; // Adjust this value to change amplitude
-
-function animateName(timestamp) {
-  spans.forEach((span, index) => {
-    const y = Math.sin(timestamp * frequency + index * 0.5) * amplitude;
-    span.style.transform = `translateY(${y}px)`;
-  });
-  requestAnimationFrame(animateName);
-}
-
-requestAnimationFrame(animateName);
-
 // Sliding-in Animations for Sections
 const sections = document.querySelectorAll("section");
 const options = {

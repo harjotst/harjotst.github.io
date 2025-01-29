@@ -182,12 +182,12 @@ body.menu-open {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #007BFF;
+    /* background-color: #007BFF; */
     border: none;
     border-radius: 50%;
     font-size: 2em;
     padding: 0.2em 0.3em;
-    color: #fff;
+    /* color: #fff; */
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
@@ -195,13 +195,13 @@ body.menu-open {
     transition: opacity 0.5s, background-color 0.3s;
 }
 
-body.dark-mode #back-to-top {
+/* body.dark-mode #back-to-top {
     background-color: #1E90FF;
 }
 
 #back-to-top:hover {
     background-color: #0056b3;
-}
+} */
 
 #back-to-top.visible {
     opacity: 1;
