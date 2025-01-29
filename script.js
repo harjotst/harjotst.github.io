@@ -1,3 +1,4 @@
+// script.js
 // Light/Dark Mode Toggle with Local Storage
 const modeToggle = document.getElementById("mode-toggle");
 const currentTheme = localStorage.getItem("theme");
@@ -20,6 +21,39 @@ modeToggle.addEventListener("click", function () {
   }
   localStorage.setItem("theme", theme);
 });
+
+// Hamburger Menu Toggle
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+const menuOverlay = document.querySelector(".menu-overlay");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navLinks.classList.toggle("open");
+  menuOverlay.classList.toggle("open");
+  document.body.classList.toggle("menu-open");
+});
+
+// Close menu when clicking anywhere
+menuOverlay.addEventListener("click", () => {
+  hamburger.classList.remove("active");
+  navLinks.classList.remove("open");
+  menuOverlay.classList.remove("open");
+  document.body.classList.remove("menu-open");
+});
+
+// Close menu when clicking nav links
+navLinks.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("open");
+    menuOverlay.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  });
+});
+
+// Keep the rest of your existing JavaScript below
+// [Keep all other JavaScript code unchanged]
 
 // Sliding-in Animations for Sections
 const sections = document.querySelectorAll("section");
@@ -68,28 +102,28 @@ backToTopButton.addEventListener("click", () => {
 });
 
 // Hamburger Menu Toggle
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const menuOverlay = document.querySelector(".menu-overlay");
+// const hamburger = document.querySelector(".hamburger");
+// const navLinks = document.querySelector(".nav-links");
+// const menuOverlay = document.querySelector(".menu-overlay");
 
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  menuOverlay.classList.toggle("open");
-  document.body.classList.toggle("menu-open");
-});
+// hamburger.addEventListener("click", () => {
+//   navLinks.classList.toggle("open");
+//   menuOverlay.classList.toggle("open");
+//   document.body.classList.toggle("menu-open");
+// });
 
-// Close menu when a nav link is clicked
-navLinks.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuOverlay.classList.remove("open");
-    document.body.classList.remove("menu-open");
-  });
-});
+// // Close menu when a nav link is clicked
+// navLinks.querySelectorAll("a").forEach((link) => {
+//   link.addEventListener("click", () => {
+//     navLinks.classList.remove("open");
+//     menuOverlay.classList.remove("open");
+//     document.body.classList.remove("menu-open");
+//   });
+// });
 
-// Close menu when clicking on the overlay
-menuOverlay.addEventListener("click", () => {
-  navLinks.classList.remove("open");
-  menuOverlay.classList.remove("open");
-  document.body.classList.remove("menu-open");
-});
+// // Close menu when clicking on the overlay
+// menuOverlay.addEventListener("click", () => {
+//   navLinks.classList.remove("open");
+//   menuOverlay.classList.remove("open");
+//   document.body.classList.remove("menu-open");
+// });

@@ -21,16 +21,21 @@ body.dark-mode {
     color: #e0e0e0;
 }
 
-/* Navigation Bar */
+/* ===================== */
+/* NAVIGATION BAR STYLES */
+/* ===================== */
+
+/* Wrap the entire nav bar at the top, fixed positioning */
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    height: initial;
+    height: 60px; /* Adjust as desired */
     background: rgba(240, 240, 240, 0.9);
     backdrop-filter: blur(10px);
     z-index: 999;
-    padding: 0.5em 1em;
+    /* By default, center everything horizontally for desktop view */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,21 +45,18 @@ body.dark-mode nav {
     background: rgba(18, 18, 18, 0.9);
 }
 
-/* Navigation Links */
+/* Nav Links (inline on desktop, hidden on mobile by default) */
 .nav-links {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     margin: 0;
     padding: 0;
-    /* flex-grow: 1; */
+    gap: 1.5em; /* spacing between links */
 }
 
-.nav-links li {
-    margin: 0 1em;
-}
-
+/* Each Nav Link */
 .nav-links li a {
     text-decoration: none;
     font-size: 1em;
@@ -70,106 +72,110 @@ body.dark-mode nav {
     color: #1E90FF;
 }
 
-/* Mode Toggle Button */
+/* Mode Toggle Button (placed among nav links) */
 #mode-toggle {
-    font-size: 1.5em;
+    font-size: 1.4em;
     cursor: pointer;
     background: none;
     border: none;
     transition: color 0.3s;
-    /* margin-left: 1em; */
 }
 
 body.dark-mode #mode-toggle {
     color: #f0f0f0;
 }
 
-/* Hamburger Menu (hidden on desktop) */
+/* The Hamburger Icon - hidden on desktop by default */
 .hamburger {
     display: none;
 }
 
-/* Mobile Styles */
+.hamburger .bar {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+body.dark-mode .hamburger .bar {
+    background-color: #e0e0e0;
+}
+
+/* ===================== */
+/* MOBILE STYLES         */
+/* ===================== */
 @media (max-width: 790px) {
-    nav {
-        justify-content: center; /* Center the elements in mobile view */
-    }
-
+    /* Hide inline nav links on mobile... */
     .nav-links {
-        position: fixed;
-        top: 100%;
-        left: 0;
-        height: 100vh; /* Full height for the menu */
-        width: 100%; /* Full width for the menu */
-        background-color: #ffffff;
-        flex-direction: column; /* Stack links and button vertically */
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
-        z-index: 998;
-        display: none; /* Initially hidden */
+      display: none; /* We'll show them via .open and the overlay */
     }
 
-    body.dark-mode .nav-links {
-        background-color: #000000;
+    header p {
+        margin: 0 0.5em;
+        margin-bottom: 1.5em;
     }
 
-    .nav-links.open {
-        display: flex; /* Display flex when the menu is opened */
-    }
-
-    .nav-links li {
-        margin: 1em 0;
-    }
-
-    /* Ensure the mode toggle button is the last element and is centered */
-    #mode-toggle {
-        font-size: 1.5em;
-        cursor: pointer;
-        background: none;
-        border: none;
-        margin-top: 1.5em; /* Add some margin to separate it from the nav links */
-    }
-
-    /* Hamburger menu styles */
+    /* ...show the hamburger icon instead, and center it horizontally at the top */
     .hamburger {
-        display: block;
-        cursor: pointer;
-        z-index: 999;
+      display: block;
+      position: absolute; /* So we can center it easily */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Perfect center within the nav bar (60px tall) */
+      z-index: 1000;
+      cursor: pointer;
     }
 
-    /* Style Hamburger Bars */
-    .hamburger .bar {
-        width: 30px;
-        height: 3px;
-        background-color: #333;
-        margin: 6px;
-        transition: 0.4s;
+    /* When the mobile menu is open, nav-links become a full-screen overlay */
+    .nav-links.open {
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+      /* Full-screen overlay to center items both horizontally & vertically */
+      position: fixed;
+      top: 650%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      
+      background-color: #ffffff;
+      z-index: 999; /* above everything except maybe the hamburger */
     }
 
-    body.dark-mode .hamburger .bar {
-        background-color: #e0e0e0;
+    body.dark-mode .nav-links.open {
+      background-color: #000000;
+    }
+
+    /* Spacing for each nav link when the menu is open */
+    .nav-links li {
+      margin: 1em 0;
     }
 }
 
+/* ===================== */
+/* MENU OVERLAY          */
+/* ===================== */
 .menu-overlay {
-    display: none; /* Initially hidden */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255); /* Transparent black overlay */
-    z-index: 997; /* Just below the nav-links */
+    background-color: rgb(255, 255, 255);
+    z-index: 998; /* below the .nav-links themselves */
     transition: opacity 0.3s ease;
 }
 
 .dark-mode .menu-overlay {
-    background-color: rgb(0, 0, 0); /* Transparent black overlay */
+    background-color: rgb(0, 0, 0);
 }
 
 .menu-overlay.open {
-    display: block; /* Show the overlay when the menu is open */
+    display: block; /* show the overlay when the menu is open */
 }
 
 /* Prevent Scrolling When Menu is Open */
@@ -177,17 +183,17 @@ body.menu-open {
     overflow: hidden;
 }
 
-/* Back to Top Button */
+/* ===================== */
+/* BACK TO TOP BUTTON    */
+/* ===================== */
 #back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    /* background-color: #007BFF; */
     border: none;
     border-radius: 50%;
     font-size: 2em;
     padding: 0.2em 0.3em;
-    /* color: #fff; */
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
@@ -195,24 +201,18 @@ body.menu-open {
     transition: opacity 0.5s, background-color 0.3s;
 }
 
-/* body.dark-mode #back-to-top {
-    background-color: #1E90FF;
-}
-
-#back-to-top:hover {
-    background-color: #0056b3;
-} */
-
 #back-to-top.visible {
     opacity: 1;
     visibility: visible;
 }
 
-/* Header Section */
+/* ===================== */
+/* HEADER SECTION        */
+/* (unchanged from before) */
+/* ===================== */
 header {
     text-align: center;
     padding-top: 100px;
-    /* padding-bottom: 60px; */
 }
 
 header img {
@@ -232,16 +232,13 @@ header h1 {
 
 header h1 span {
     display: inline-block;
-    /* Ensure spaces are preserved */
     white-space: pre;
 }
-
 
 header p {
     font-size: 1.2em;
 }
 
-/* Social Media Buttons */
 .social-media {
     display: flex;
     align-items: center;
@@ -265,10 +262,10 @@ header p {
 }
 
 .social-media a div.social-icon {
-    mask-size: cover; /* Ensures the image fills the container */
-    width: 32px; /* Set the width of the icon */
-    height: 32px; /* Set the height of the icon */
-    display: inline-block; /* Ensures the icon is treated as an inline element */
+    mask-size: cover;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
     background-color: #000;
 }
 
@@ -280,12 +277,7 @@ header p {
     transform: scale(1.1);
 }
 
-.word {
-    display: inline-block;
-    margin: 0 5px; /* small gap between words */
-}
-
-/* Section Styles */
+/* Section styles (unchanged) */
 section {
     padding: 1em 10%;
     opacity: 0;
@@ -300,7 +292,9 @@ section.visible {
 
 section h2 {
     font-size: 2em;
-    margin-bottom: 1em;
+    margin: 1.5em 0;
+    /* margin-top: 1.5em;
+    margin-bottom: 1.5em; */
     text-align: center;
     font-weight: 700;
 }
@@ -311,7 +305,8 @@ section h3 {
     font-weight: 700;
 }
 
-section p, section ul {
+section p,
+section ul {
     font-size: 1em;
     line-height: 1.6;
     font-weight: 500;
@@ -340,12 +335,16 @@ section ul li::before {
     margin-bottom: 1em;
 }
 
-/* Experience Section */
+/* Experience & Education Layout (unchanged) */
+#experience .experience-item:last-child {
+    margin-bottom: 0;
+}
+
 .experience-item {
     display: flex;
     align-items: flex-start;
     margin-bottom: 3em;
-    opacity: 0;
+    /* opacity: 0; */
     transform: translateX(-50px);
     transition: opacity 1s ease, transform 1s ease;
 }
@@ -366,10 +365,6 @@ section ul li::before {
     flex: 1;
 }
 
-#experience .experience-item:last-of-type {
-    margin-bottom: 0;
-}
-
 /* Education Section */
 .education-item {
     display: flex;
@@ -388,7 +383,35 @@ section ul li::before {
     flex: 1;
 }
 
-/* Contact Form */
+/* Responsive tweaks for narrow screens */
+@media (max-width: 768px) {
+    .experience-item {
+        flex-direction: column;
+        align-items: center;
+    }
+    .experience-item img {
+        margin-bottom: 1em;
+    }
+    .word {
+        display: block;
+        margin: 0.25em 0;
+        text-align: center;
+    }
+    section {
+        padding: 0.5em 5%;
+    }
+
+    .experience-item, .education-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .experience-item img, .education-item img {
+        margin-bottom: 1em;
+    }
+}
+
+/* Contact Form (if used) */
 #contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -400,7 +423,8 @@ section ul li::before {
     font-weight: 700;
 }
 
-#contact-form input, #contact-form textarea {
+#contact-form input,
+#contact-form textarea {
     width: 100%;
     padding: 0.75em;
     margin-bottom: 1em;
@@ -432,26 +456,4 @@ body.dark-mode #contact-form textarea {
 
 #contact-form button:hover {
     background: #0056b3;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .experience-item, .education-item {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .experience-item img, .education-item img {
-        margin-bottom: 1em;
-    }
-
-    .word {
-        display: block;
-        margin: 0.25em 0; /* some vertical gap between lines */
-        text-align: center; /* optional, to center each line */
-    }
-
-    section {
-        padding: 0.5em 5%; /* less padding for smaller screens */
-    }
 }
