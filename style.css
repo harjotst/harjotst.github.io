@@ -28,7 +28,6 @@
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius: 16px;
-  --radius-sm: 11px;
   --gap: clamp(12px, 1.5vw, 20px);
   --pad: clamp(16px, 4vw, 40px);
   --header-h: 68px;
@@ -750,8 +749,7 @@ h1 {
   color: var(--text-2);
   transition: transform 0.2s, color 0.2s;
 }
-.tile-link:hover .icon-go,
-.card-mini:hover .icon-go {
+.tile-link:hover .icon-go {
   transform: translate(2px, -2px);
   color: var(--accent-text);
 }
@@ -845,9 +843,6 @@ h3 {
   align-items: start;
 }
 /* Experience reads as a ledger: logo | dates & place | role and bullets */
-.card-xp {
-  grid-template-columns: 56px minmax(0, 1fr);
-}
 .card-xp > .logo-well {
   grid-row: 1 / 3;
 }
@@ -919,9 +914,6 @@ h3 {
   color: var(--text-2);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-}
-.sep {
-  color: var(--accent-text);
 }
 .degree {
   margin-top: 4px;
@@ -1053,7 +1045,6 @@ h3 {
 .card-project .bullets {
   margin-top: 0;
 }
-.u-link,
 .card-cta,
 .contact-email,
 .to-top {
@@ -1198,6 +1189,8 @@ h3 {
 html.js .reveal:not(.in) {
   opacity: 0;
   transform: translateY(16px);
+}
+html.js:not(.io) .reveal:not(.in) {
   animation: reveal-safety 0s linear 2.5s forwards;
 }
 html.js .reveal {
@@ -1263,9 +1256,6 @@ html.js .reveal {
   .tile-portrait img {
     position: static;
     aspect-ratio: 3 / 2;
-  }
-  .tile-stack {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .tile-link {
     flex-direction: column;
@@ -1365,14 +1355,35 @@ html.js .reveal {
   .icon-btn:hover,
   .tile-portrait:hover img,
   .brand:hover .brand-mark,
-  .tile-link:hover .icon-go,
-  .card-mini:hover .icon-go {
+  .tile-link:hover .icon-go {
     transform: none;
   }
 }
 
 /* ---------- Print ---------- */
 @media print {
+  :root,
+  :root:not([data-theme="light"]),
+  :root[data-theme="dark"] {
+    --bg: #fff;
+    --surface: #fff;
+    --sunk: #f2f2f2;
+    --text: #000;
+    --text-2: #444;
+    --line: #ccc;
+    --line-strong: #999;
+    --accent-soft: #fff;
+    --well: #fff;
+    --shadow: none;
+    --shadow-hover: none;
+    color-scheme: light;
+  }
+  .tile-now,
+  .card-contact {
+    background: #fff;
+    color: #000;
+    border-color: #ccc;
+  }
   .site-header,
   .mobile-menu,
   .skip-link,

@@ -16,9 +16,17 @@
     return t === "light" || t === "dark" ? t : mq.matches ? "dark" : "light";
   }
   function syncThemeButton() {
-    if (!themeBtn) return;
     var dark = currentTheme() === "dark";
-    themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    if (themeBtn) {
+      themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    }
+    // Keep the browser chrome colour in step with an overridden theme.
+    if (root.getAttribute("data-theme")) {
+      Array.prototype.forEach.call(document.querySelectorAll('meta[name="theme-color"]'), function (m) {
+        m.setAttribute("content", dark ? "#161514" : "#f6f2eb");
+        m.removeAttribute("media");
+      });
+    }
   }
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
@@ -122,6 +130,7 @@
       },
       { threshold: 0, rootMargin: "0px 0px -6% 0px" }
     );
+    root.classList.add("io"); // observer armed: the CSS safety timer stands down
     items.forEach(function (el) {
       io.observe(el);
     });
@@ -144,6 +153,9 @@
       else a.removeAttribute("aria-current");
     });
   }
+  function atDocumentEnd() {
+    return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+  }
   if ("IntersectionObserver" in window && sections.length) {
     var visible = {};
     var so = new IntersectionObserver(
@@ -155,6 +167,7 @@
         sections.forEach(function (s) {
           if (visible[s.id] && (best === null || visible[s.id] > visible[best])) best = s.id;
         });
+        if (atDocumentEnd()) best = sections[sections.length - 1].id;
         if (best) setActive(best);
       },
       { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
@@ -162,5 +175,13 @@
     sections.forEach(function (s) {
       so.observe(s);
     });
+    // The last section may never reach the observer band on tall viewports.
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (atDocumentEnd()) setActive(sections[sections.length - 1].id);
+      },
+      { passive: true }
+    );
   }
 })();
