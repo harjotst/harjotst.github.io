@@ -44,12 +44,24 @@
     menuBtn.setAttribute("aria-expanded", String(open));
     menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     body.classList.toggle("menu-open", open);
+    // The page behind the menu is inert while it is open.
+    Array.prototype.forEach.call(document.querySelectorAll("main, .site-footer, .skip-link"), function (el) {
+      if (open) el.setAttribute("inert", "");
+      else el.removeAttribute("inert");
+    });
     if (open) {
       var first = menu.querySelector("a");
       if (first) first.focus();
     } else if (menu.contains(document.activeElement)) {
       menuBtn.focus();
     }
+  }
+  function menuFocusables() {
+    var header = Array.prototype.slice.call(document.querySelectorAll(".site-header a, .site-header button"));
+    var links = Array.prototype.slice.call(menu.querySelectorAll("a"));
+    return header.concat(links).filter(function (el) {
+      return el.offsetParent !== null;
+    });
   }
   if (menuBtn && menu) {
     menuBtn.addEventListener("click", function () {
@@ -59,9 +71,25 @@
       if (e.target.closest("a")) setMenu(false);
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && menu.classList.contains("open")) {
+      if (!menu.classList.contains("open")) return;
+      if (e.key === "Escape") {
         setMenu(false);
         menuBtn.focus();
+        return;
+      }
+      if (e.key === "Tab") {
+        // Keep keyboard focus cycling through the header and the open menu.
+        var items = menuFocusables();
+        if (!items.length) return;
+        var first = items[0];
+        var last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
     var desktop = window.matchMedia("(min-width: 900px)");
