@@ -1,132 +1,138 @@
-// script.js
-// Light/Dark Mode Toggle with Local Storage
-const modeToggle = document.getElementById("mode-toggle");
-const currentTheme = localStorage.getItem("theme");
+/* Harjot Singh Tathgur — portfolio
+   Dependency-free. Handles: theme toggle (persisted), mobile menu,
+   scroll reveal (JS-gated, threshold 0), and active nav highlighting. */
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var body = document.body;
+  root.classList.add("js");
 
-if (currentTheme) {
-  document.body.classList.add(currentTheme);
-  modeToggle.textContent = currentTheme === "dark-mode" ? "🌙" : "🌞";
-} else {
-  modeToggle.textContent = "🌞";
-}
+  /* ---------- Theme ---------- */
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  var themeBtn = document.getElementById("theme-toggle");
 
-modeToggle.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
-  let theme = "light-mode";
-  if (document.body.classList.contains("dark-mode")) {
-    theme = "dark-mode";
-    this.textContent = "🌙";
-  } else {
-    this.textContent = "🌞";
+  function currentTheme() {
+    var t = root.getAttribute("data-theme");
+    return t === "light" || t === "dark" ? t : mq.matches ? "dark" : "light";
   }
-  localStorage.setItem("theme", theme);
-});
+  function syncThemeButton() {
+    if (!themeBtn) return;
+    var dark = currentTheme() === "dark";
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {}
+      syncThemeButton();
+    });
+  }
+  if (mq.addEventListener) mq.addEventListener("change", syncThemeButton);
+  syncThemeButton();
 
-// Hamburger Menu Toggle
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const menuOverlay = document.querySelector(".menu-overlay");
+  /* ---------- Mobile menu ---------- */
+  var menuBtn = document.getElementById("menu-toggle");
+  var menu = document.getElementById("mobile-menu");
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navLinks.classList.toggle("open");
-  menuOverlay.classList.toggle("open");
-  document.body.classList.toggle("menu-open");
-});
-
-// Close menu when clicking anywhere
-menuOverlay.addEventListener("click", () => {
-  hamburger.classList.remove("active");
-  navLinks.classList.remove("open");
-  menuOverlay.classList.remove("open");
-  document.body.classList.remove("menu-open");
-});
-
-// Close menu when clicking nav links
-navLinks.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navLinks.classList.remove("open");
-    menuOverlay.classList.remove("open");
-    document.body.classList.remove("menu-open");
-  });
-});
-
-// Keep the rest of your existing JavaScript below
-// [Keep all other JavaScript code unchanged]
-
-// Sliding-in Animations for Sections
-const sections = document.querySelectorAll("section");
-// Reveal an element as soon as any part of it scrolls into view (minus a
-// small bottom inset). A fixed 10% threshold can never be reached by a section
-// taller than ten viewports, which the Experience section is on small phones.
-const options = {
-  root: null,
-  threshold: 0,
-  rootMargin: "0px 0px -60px 0px",
-};
-
-const observer = new IntersectionObserver(function (entries, observer) {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
+  function setMenu(open) {
+    if (!menuBtn || !menu) return;
+    menu.classList.toggle("open", open);
+    menu.setAttribute("aria-hidden", String(!open));
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    body.classList.toggle("menu-open", open);
+    if (open) {
+      var first = menu.querySelector("a");
+      if (first) first.focus();
+    } else if (menu.contains(document.activeElement)) {
+      menuBtn.focus();
     }
-  });
-}, options);
-
-sections.forEach((section) => {
-  observer.observe(section);
-});
-
-// Sliding-in Animations for Experience Items
-const experienceItems = document.querySelectorAll(".experience-item");
-
-experienceItems.forEach((item) => {
-  observer.observe(item);
-});
-
-// Back to Top Button fade in/out
-const backToTopButton = document.getElementById("back-to-top");
-
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 300) {
-    backToTopButton.classList.add("visible");
-  } else {
-    backToTopButton.classList.remove("visible");
   }
-});
+  if (menuBtn && menu) {
+    menuBtn.addEventListener("click", function () {
+      setMenu(menuBtn.getAttribute("aria-expanded") !== "true");
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.classList.contains("open")) {
+        setMenu(false);
+        menuBtn.focus();
+      }
+    });
+    var desktop = window.matchMedia("(min-width: 900px)");
+    var closeOnDesktop = function (ev) {
+      if (ev.matches) setMenu(false);
+    };
+    if (desktop.addEventListener) desktop.addEventListener("change", closeOnDesktop);
+  }
 
-backToTopButton.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-});
+  /* ---------- Scroll reveal ---------- */
+  var items = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  function show(el, delay) {
+    el.style.transitionDelay = delay + "ms";
+    el.classList.add("in");
+    window.setTimeout(function () {
+      el.style.transitionDelay = "";
+      el.classList.remove("reveal");
+    }, 700 + delay);
+  }
+  if ("IntersectionObserver" in window && items.length) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        var i = 0;
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          io.unobserve(entry.target);
+          show(entry.target, Math.min(i, 5) * 70);
+          i++;
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px -6% 0px" }
+    );
+    items.forEach(function (el) {
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function (el) {
+      show(el, 0);
+    });
+  }
 
-// Hamburger Menu Toggle
-// const hamburger = document.querySelector(".hamburger");
-// const navLinks = document.querySelector(".nav-links");
-// const menuOverlay = document.querySelector(".menu-overlay");
-
-// hamburger.addEventListener("click", () => {
-//   navLinks.classList.toggle("open");
-//   menuOverlay.classList.toggle("open");
-//   document.body.classList.toggle("menu-open");
-// });
-
-// // Close menu when a nav link is clicked
-// navLinks.querySelectorAll("a").forEach((link) => {
-//   link.addEventListener("click", () => {
-//     navLinks.classList.remove("open");
-//     menuOverlay.classList.remove("open");
-//     document.body.classList.remove("menu-open");
-//   });
-// });
-
-// // Close menu when clicking on the overlay
-// menuOverlay.addEventListener("click", () => {
-//   navLinks.classList.remove("open");
-//   menuOverlay.classList.remove("open");
-//   document.body.classList.remove("menu-open");
-// });
+  /* ---------- Active nav link ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a[href^='#']"));
+  var sections = navLinks
+    .map(function (a) {
+      return document.querySelector(a.getAttribute("href"));
+    })
+    .filter(Boolean);
+  function setActive(id) {
+    navLinks.forEach(function (a) {
+      if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  if ("IntersectionObserver" in window && sections.length) {
+    var visible = {};
+    var so = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.target.id] = entry.isIntersecting ? entry.intersectionRatio : 0;
+        });
+        var best = null;
+        sections.forEach(function (s) {
+          if (visible[s.id] && (best === null || visible[s.id] > visible[best])) best = s.id;
+        });
+        if (best) setActive(best);
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+    );
+    sections.forEach(function (s) {
+      so.observe(s);
+    });
+  }
+})();

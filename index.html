@@ -1,392 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harjot Singh Tathgur - Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Google Fonts -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harjot Singh Tathgur — Software Engineer</title>
+    <meta
+      name="description"
+      content="Harjot Singh Tathgur is a Software Engineer at Tesla and the founding engineer on its internal Database-as-a-Service platform. University of Waterloo Computer Science, class of 2025."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f2eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161514" media="(prefers-color-scheme: dark)" />
+    <!-- Apply a stored theme before first paint so there is no flash. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") root.setAttribute("data-theme", t);
+        } catch (e) {}
+        root.classList.add("js");
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'><rect%20width='64'%20height='64'%20rx='16'%20fill='%23ff5a1f'/><text%20x='32'%20y='42'%20text-anchor='middle'%20font-family='Sora,Arial,sans-serif'%20font-size='28'%20font-weight='800'%20fill='%231c0d05'>HT</text></svg>" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#home">🏠 Home</a></li>
-        <li><a href="#education">🎓 Education</a></li>
-        <li><a href="#experience">💼 Experience</a></li>
-        <li><a href="#projects">🚀 Projects</a></li>
-        <li><a href="#skills">🛠️ Skills</a></li>
-        <li><a href="#contact">📞 Contact</a></li>
-        <!-- Light/Dark Mode Toggle Button -->
-        <li><button id="mode-toggle">🌞</button></li>
-      </ul>
-      <!-- Hamburger Menu Icon (Visible in mobile view) -->
-      <div
-        class="hamburger"
-        aria-label="Toggle navigation"
-        role="button"
-        tabindex="0"
-      >
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </nav>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Menu Overlay -->
-    <div class="menu-overlay"></div>
+    <!-- Inline icon sprite -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="i-github" viewBox="0 0 24 24">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2.5" y="4.5" width="19" height="15" rx="3" />
+        <path d="m3.5 7.5 8.5 6 8.5-6" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </symbol>
+      <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7" />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+    </svg>
 
-    <!-- Back to Top Button -->
-    <span id="back-to-top">⬆️</span>
-
-    <!-- Header Section -->
-    <header id="home">
-      <div><img src="./me.jpeg" alt="Me" /></div>
-      <h1 id="name">Harjot Singh Tathgur
-      </h1>
-      <p>
-        👋 Hey there! I'm a Software Engineer at Tesla, where I was the founding
-        engineer on the internal Database-as-a-Service platform. I graduated from
-        the University of Waterloo with a Bachelor of Computer Science in 2025.
-      </p>
-
-      <!-- Social Media Buttons -->
-      <div class="social-media">
-        <a href="https://github.com/harjotst" target="_blank" rel="noopener"
-          ><div class="social-icon" id="github-logo"></div
-        ></a>
-        <a href="https://linkedin.com/in/harjot-singh-tathgur" target="_blank" rel="noopener"
-          ><div class="social-icon" id="linkedin-logo"></div
-        ></a>
-        <a href="mailto:harjot.singh.tathgur@gmail.com" style="font-size: 32px">✉️</a>
-      </div>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Harjot Singh Tathgur, back to top">
+          <span class="brand-mark" aria-hidden="true">HT</span>
+          <span class="brand-name">Harjot Tathgur</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button
+            class="icon-btn theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Switch to dark theme"
+          >
+            <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon" /></svg>
+            <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun" /></svg>
+          </button>
+          <button
+            class="icon-btn menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+          >
+            <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu" /></svg>
+            <svg class="icon icon-close" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <!-- Education Section -->
-    <section id="education">
-      <h2>🎓 Education</h2>
-      <div class="education-item">
-        <img src="./uw-logo.png" alt="University of Waterloo Logo" />
-        <div class="education-details">
-          <h3>University of Waterloo</h3>
-          <p>
-            Bachelor of Computer Science, Honours Co-operative Program
-            (Sep 2020 – Jun 2025)
-          </p>
-          <p>🏅 GPA: 3.7/4.0</p>
-          <p>
-            📚 Coursework: Artificial Intelligence, Machine Learning, Operating
-            Systems, Computer Networks, Distributed Systems, Concurrency &
-            Parallelism, Computer Graphics.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-      <h2>💼 Experience</h2>
-
-      <!-- Tesla (Software Engineer) Experience -->
-      <div class="experience-item">
-        <img src="tesla-logo.png" alt="Tesla Logo" />
-        <div class="experience-details">
-          <h3>Software Engineer @ Tesla</h3>
-          <p>Fremont, CA | Jul 2025 – Present</p>
-          <ul>
-            <li>
-              🏗️ Founding engineer on Tesla's internal Database-as-a-Service
-              platform (<strong>DPCP</strong>): took it from zero to
-              production, now managing <strong>250+ database clusters</strong>
-              and cutting provisioning from multi-day ticket queues to
-              <strong>under 30 minutes</strong>.
-            </li>
-            <li>
-              🔄 Built the full self-service lifecycle — create, batch-create,
-              decommission, scale nodes — across
-              <strong>MySQL InnoDB Cluster</strong>,
-              <strong>PostgreSQL Patroni</strong>,
-              <strong>Redis Sentinel/Cluster/Enterprise</strong>,
-              <strong>ClickHouse</strong>, <strong>MongoDB</strong>, and
-              <strong>Neo4j</strong> on <strong>FastAPI</strong> and
-              <strong>Temporal.io</strong>.
-            </li>
-            <li>
-              🛡️ Ran fleet-wide maintenance with
-              <strong>zero customer downtime</strong>: major OS version
-              upgrades, package updates, and CVE remediation across the
-              production database fleet, orchestrated through HA failover so
-              clusters stayed available throughout.
-            </li>
-            <li>
-              🔧 Root-caused and fixed platform reliability failures — an
-              <strong>Ansible</strong> child-process pipe deadlock that hung
-              deploys for hours, and Temporal payload blowups resolved via
-              count-only pagination — and cut integration-test wall time from
-              <strong>~24 hours to 10–15 minutes</strong> with per-file
-              fan-out.
-            </li>
-            <li>
-              🆔 Designed platform-wide identity contracts: a transactional
-              cluster ID feeding inventory and monitoring pipelines, and one
-              canonical name threaded through engines, load balancers, DNS, and
-              TLS.
-            </li>
-            <li>
-              📦 Moved deployment playbooks into a runtime-loaded repo with
-              resolved-SHA audit trails, letting database engineers ship
-              install-logic changes without waiting on a control-plane release.
-            </li>
-            <li>
-              🔒 Hardened authorization fail-closed: replaced hardcoded
-              security groups with a directory-backed privilege model, closed
-              DNS-zone enumeration and credential-leak paths, and replaced
-              plaintext credentials with one-time secret links.
-            </li>
-            <li>
-              🤝 Reviewed <strong>50 teammate pull requests</strong> as
-              frequently the sole approver, and authored a nine-PR enablement
-              series that unblocked a teammate's load-balancer integration.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Tesla (Software Engineer Intern) Experience -->
-      <div class="experience-item">
-        <img src="tesla-logo.png" alt="Tesla Logo" />
-        <div class="experience-details">
-          <h3>Software Engineer Intern @ Tesla</h3>
-          <p>Fremont, CA | Jan 2024 – Apr 2025</p>
-          <ul>
-            <li>
-              ⚡ Engineered a <strong>Python</strong> CLI to migrate
-              <strong>500,000+ Jira records</strong> into a structured
-              <strong>MySQL</strong> schema with 99.9% data integrity,
-              eliminating 200+ hours of manual data entry.
-            </li>
-            <li>
-              ✅ Containerized 750+ <strong>Playwright</strong> tests with
-              <strong>Docker</strong> in <strong>Jenkins</strong> CI/CD,
-              reducing regression-detection time by <strong>30%</strong> and
-              faulty deployments by <strong>40%</strong>.
-            </li>
-            <li>
-              🔐 Developed a secure <strong>ASP.NET Core</strong> REST API
-              integrating Jira with <strong>Microsoft Entra ID</strong>,
-              enforcing RBAC to reduce unauthorized application access by
-              <strong>90%</strong>.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Manulife Experience -->
-      <div class="experience-item">
-        <img src="manulife-logo.png" alt="Manulife Logo" />
-        <div class="experience-details">
-          <h3>Software Developer Intern @ Manulife Financial</h3>
-          <p>Waterloo, ON | May 2023 – Aug 2023</p>
-          <ul>
-            <li>
-              📉 Analyzed dependency metadata for 500+ <strong>MSSQL</strong>
-              stored procedures using <strong>Python</strong>, eliminating 370
-              redundant procedures and cutting database CPU utilization by
-              <strong>70% ($12K/month)</strong>.
-            </li>
-            <li>
-              🔑 Integrated Single Sign-On via <strong>ADFS</strong> into a
-              legacy <strong>.NET</strong> application, strengthening
-              authentication and reducing access-related support tickets by
-              <strong>75%</strong>.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Alert Driving Experience -->
-      <div class="experience-item">
-        <img src="alertdriving-logo.png" alt="Alert Driving Logo" />
-        <div class="experience-details">
-          <h3>Software Engineer @ Alert Driving</h3>
-          <p>Toronto, ON | Sep 2022 – Dec 2022</p>
-          <ul>
-            <li>
-              🌐 Developed a multilingual rich text editor for email reports
-              using <strong>HTML</strong>, <strong>CSS</strong>, and
-              <strong>jQuery</strong>.
-            </li>
-            <li>
-              🗄️ Designed a MySQL database schema for efficient storage of
-              multilingual reports.
-            </li>
-            <li>
-              📜 Integrated an email report history tracking system using
-              <strong>PHP</strong>.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- University of Waterloo Experience -->
-      <div class="experience-item">
-        <img src="uw-logo.png" alt="University of Waterloo Logo" />
-        <div class="experience-details">
-          <h3>Front-End Developer @ University of Waterloo</h3>
-          <p>Waterloo, ON | Jan 2022 – Apr 2022</p>
-          <ul>
-            <li>
-              📝 Developed a table component in AngularJS for handling large
-              data sets.
-            </li>
-            <li>
-              🎨 Improved the UI of a TA hiring system by designing components
-              using HTML and CSS.
-            </li>
-            <li>
-              🔄 Streamlined route middleware using .NET Framework and Entity
-              Framework Core.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Ellerca Health Corp. Experience -->
-      <div class="experience-item">
-        <img src="ellerca-health-logo.png" alt="Ellerca Health Corp. Logo" />
-        <div class="experience-details">
-          <h3>Full Stack Developer @ Ellerca Health Corp.</h3>
-          <p>Mississauga, ON | May 2021 – Aug 2021</p>
-          <ul>
-            <li>
-              📆 Developed a scheduling platform using <strong>React</strong>,
-              <strong>Express</strong>, and <strong>MongoDB</strong>.
-            </li>
-            <li>
-              💬 Integrated video calling via the <strong>Twilio API</strong>.
-            </li>
-            <li>
-              📊 Added data analytics using the
-              <strong>Segment Analytics API</strong>.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>🚀 Projects</h2>
-
-      <!-- ai-anki -->
-      <div class="project-item">
-        <h3>
-          <a href="https://github.com/harjotst/ai-anki" target="_blank" rel="noopener"
-            >ai-anki</a
-          >
-        </h3>
-        <p class="project-stack">
-          FastAPI, Postgres, React, Anthropic API, Fly.io
-        </p>
-        <ul>
-          <li>
-            📚 Built a document-to-flashcard platform that ingests lecture
-            PDFs, slide decks, and spreadsheets and generates structured Anki
-            decks through a two-pass LLM pipeline — a reviewable plan with cost
-            estimate first, then generation; a 52K-token source yields
-            <strong>164 cards for $2.75</strong> in about a minute.
-          </li>
-          <li>
-            🧬 Designed deck lineage so decks survive regeneration: each card
-            holds a stable identity, revision claims are verified server-side
-            by fingerprint similarity, and unchanged cards are omitted from
-            export entirely — preserving weeks of spaced-repetition scheduling
-            that a naive re-import would destroy. Covered by
-            <strong>226 tests</strong> against a real containerized Postgres
-            and a real Anki collection.
-          </li>
-          <li>
-            💸 Cut per-run LLM cost by <strong>~33%</strong> by diagnosing a
-            broken prompt-cache lineage, restructured concurrent generation
-            with a warm-up call to convert N−1 cache misses into reads, and
-            bounded spend at four layers including a redeploy-free kill switch.
-          </li>
+    <!-- Mobile navigation lives outside the header on purpose:
+         a fixed panel inside a backdrop-filter element would be clipped. -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav class="container" aria-label="Mobile">
+        <ul class="mobile-links" role="list">
+          <li><a href="#about"><span class="num">01</span>About</a></li>
+          <li><a href="#education"><span class="num">02</span>Education</a></li>
+          <li><a href="#experience"><span class="num">03</span>Experience</a></li>
+          <li><a href="#projects"><span class="num">04</span>Projects</a></li>
+          <li><a href="#skills"><span class="num">05</span>Skills</a></li>
+          <li><a href="#contact"><span class="num">06</span>Contact</a></li>
         </ul>
+        <div class="mobile-social">
+          <a href="https://github.com/harjotst" target="_blank" rel="noopener" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg></a>
+          <a href="https://linkedin.com/in/harjot-singh-tathgur" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg></a>
+          <a href="mailto:harjot.singh.tathgur@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg></a>
+        </div>
+      </nav>
+    </div>
+
+    <main id="main">
+      <!-- ===== Hero / About ===== -->
+      <section class="hero container" id="about" aria-labelledby="hero-title">
+        <div class="bento">
+          <article class="tile tile-intro">
+            <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Software Engineer · Fremont, CA</p>
+            <h1 id="hero-title">Harjot Singh Tathgur<span class="accent-dot" aria-hidden="true">.</span></h1>
+            <p class="tagline">Software engineer working on databases, platforms, and the infrastructure underneath.</p>
+            <p class="lede">
+              I'm a Software Engineer at Tesla, where I was the founding engineer on the
+              internal Database-as-a-Service platform. I graduated from the University of
+              Waterloo with a Bachelor of Computer Science in 2025.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="mailto:harjot.singh.tathgur@gmail.com">
+                Get in touch
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a class="btn btn-ghost" href="#experience">
+                See the work
+                <svg class="icon" aria-hidden="true"><use href="#i-down" /></svg>
+              </a>
+            </div>
+          </article>
+
+          <figure class="tile tile-portrait">
+            <img
+              src="me.jpeg"
+              alt="Portrait of Harjot Singh Tathgur smiling outdoors at a street market"
+              width="400"
+              height="400"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <figcaption class="portrait-tag">Hey there!</figcaption>
+          </figure>
+
+          <article class="tile tile-now">
+            <div class="now-head">
+              <p class="eyebrow eyebrow-on-accent">Currently</p>
+              <span class="now-date">Jul 2025 – Present</span>
+            </div>
+            <div class="now-body">
+              <span class="logo-well logo-well-lg">
+                <img src="tesla-logo.png" alt="" width="40" height="40" />
+              </span>
+              <div>
+                <p class="now-title">Software Engineer @ Tesla</p>
+                <p class="now-sub">Founding engineer, Database-as-a-Service (DPCP)</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile-stats" aria-label="Quick stats">
+            <p class="eyebrow">By the numbers</p>
+            <dl class="stats">
+              <div class="stat">
+                <dt>database clusters managed</dt>
+                <dd>250<span class="plus">+</span></dd>
+              </div>
+              <div class="stat">
+                <dt>minutes to provision, down from multi-day queues</dt>
+                <dd><span class="lt">&lt;</span>30</dd>
+              </div>
+              <div class="stat">
+                <dt>customer downtime across fleet-wide maintenance</dt>
+                <dd>0</dd>
+              </div>
+            </dl>
+          </article>
+
+          <div class="tile-stack">
+            <a class="tile tile-link" href="https://github.com/harjotst" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              <span class="link-text"><span class="link-name">GitHub</span><span class="link-sub">@harjotst</span></span>
+              <svg class="icon icon-go" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <a class="tile tile-link" href="https://linkedin.com/in/harjot-singh-tathgur" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+              <span class="link-text"><span class="link-name">LinkedIn</span><span class="link-sub">harjot-singh-tathgur</span></span>
+              <svg class="icon icon-go" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <a class="tile tile-link" href="mailto:harjot.singh.tathgur@gmail.com">
+              <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+              <span class="link-text"><span class="link-name">Email</span><span class="link-sub">harjot.singh.tathgur<wbr />@gmail.com</span></span>
+              <svg class="icon icon-go" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Education ===== -->
+      <section class="section container" id="education" aria-labelledby="education-title">
+        <header class="section-head" data-num="01">
+          <p class="eyebrow">01 — Education</p>
+          <h2 id="education-title">Where it started</h2>
+        </header>
+
+        <article class="card card-edu reveal">
+          <span class="logo-well">
+            <img src="uw-logo.png" alt="" width="56" height="56" />
+          </span>
+          <div class="card-body">
+            <div class="card-head">
+              <div>
+                <h3>University of Waterloo</h3>
+                <p class="degree">Bachelor of Computer Science, Honours Co-operative Program</p>
+              </div>
+              <p class="meta">Sep 2020 – Jun 2025</p>
+            </div>
+            <ul class="pill-row" role="list" aria-label="Highlights">
+              <li class="pill pill-accent">GPA: 3.7/4.0</li>
+              <li class="pill">Waterloo, ON</li>
+            </ul>
+            <p class="coursework">
+              <strong>Coursework:</strong> Artificial Intelligence, Machine Learning, Operating
+              Systems, Computer Networks, Distributed Systems, Concurrency &amp; Parallelism,
+              Computer Graphics.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ===== Experience ===== -->
+      <section class="section container" id="experience" aria-labelledby="experience-title">
+        <header class="section-head" data-num="02">
+          <p class="eyebrow">02 — Experience</p>
+          <h2 id="experience-title">Six roles, one throughline: <em>reliable systems</em></h2>
+        </header>
+
+        <div class="stack">
+          <article class="card card-xp reveal is-current">
+            <span class="logo-well">
+              <img src="tesla-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">Jul 2025 – Present</span><span class="xp-loc">Fremont, CA</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Software Engineer <span class="at">@ Tesla</span></h3>
+                <span class="pill pill-accent pill-current">Current</span>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Founding engineer on Tesla's internal Database-as-a-Service platform (<strong>DPCP</strong>): took it from zero to production, now managing <strong>250+ database clusters</strong> and cutting provisioning from multi-day ticket queues to <strong>under 30 minutes</strong>.</li>
+                <li>Built the full self-service lifecycle — create, batch-create, decommission, scale nodes — across <strong>MySQL InnoDB Cluster</strong>, <strong>PostgreSQL Patroni</strong>, <strong>Redis Sentinel/Cluster/Enterprise</strong>, <strong>ClickHouse</strong>, <strong>MongoDB</strong>, and <strong>Neo4j</strong> on <strong>FastAPI</strong> and <strong>Temporal.io</strong>.</li>
+                <li>Ran fleet-wide maintenance with <strong>zero customer downtime</strong>: major OS version upgrades, package updates, and CVE remediation across the production database fleet, orchestrated through HA failover so clusters stayed available throughout.</li>
+                <li>Root-caused and fixed platform reliability failures — an <strong>Ansible</strong> child-process pipe deadlock that hung deploys for hours, and Temporal payload blowups resolved via count-only pagination — and cut integration-test wall time from <strong>~24 hours to 10–15 minutes</strong> with per-file fan-out.</li>
+                <li>Designed platform-wide identity contracts: a transactional cluster ID feeding inventory and monitoring pipelines, and one canonical name threaded through engines, load balancers, DNS, and TLS.</li>
+                <li>Moved deployment playbooks into a runtime-loaded repo with resolved-SHA audit trails, letting database engineers ship install-logic changes without waiting on a control-plane release.</li>
+                <li>Hardened authorization fail-closed: replaced hardcoded security groups with a directory-backed privilege model, closed DNS-zone enumeration and credential-leak paths, and replaced plaintext credentials with one-time secret links.</li>
+                <li>Reviewed <strong>50 teammate pull requests</strong> as frequently the sole approver, and authored a nine-PR enablement series that unblocked a teammate's load-balancer integration.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card-xp reveal">
+            <span class="logo-well">
+              <img src="tesla-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">Jan 2024 – Apr 2025</span><span class="xp-loc">Fremont, CA</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Software Engineer Intern <span class="at">@ Tesla</span></h3>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Engineered a <strong>Python</strong> CLI to migrate <strong>500,000+ Jira records</strong> into a structured <strong>MySQL</strong> schema with 99.9% data integrity, eliminating 200+ hours of manual data entry.</li>
+                <li>Containerized 750+ <strong>Playwright</strong> tests with <strong>Docker</strong> in <strong>Jenkins</strong> CI/CD, reducing regression-detection time by <strong>30%</strong> and faulty deployments by <strong>40%</strong>.</li>
+                <li>Developed a secure <strong>ASP.NET Core</strong> REST API integrating Jira with <strong>Microsoft Entra ID</strong>, enforcing RBAC to reduce unauthorized application access by <strong>90%</strong>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card-xp reveal">
+            <span class="logo-well">
+              <img src="manulife-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">May 2023 – Aug 2023</span><span class="xp-loc">Waterloo, ON</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Software Developer Intern <span class="at">@ Manulife Financial</span></h3>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Analyzed dependency metadata for 500+ <strong>MSSQL</strong> stored procedures using <strong>Python</strong>, eliminating 370 redundant procedures and cutting database CPU utilization by <strong>70% ($12K/month)</strong>.</li>
+                <li>Integrated Single Sign-On via <strong>ADFS</strong> into a legacy <strong>.NET</strong> application, strengthening authentication and reducing access-related support tickets by <strong>75%</strong>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card-xp reveal">
+            <span class="logo-well">
+              <img src="alertdriving-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">Sep 2022 – Dec 2022</span><span class="xp-loc">Toronto, ON</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Software Engineer <span class="at">@ Alert Driving</span></h3>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Developed a multilingual rich text editor for email reports using <strong>HTML</strong>, <strong>CSS</strong>, and <strong>jQuery</strong>.</li>
+                <li>Designed a MySQL database schema for efficient storage of multilingual reports.</li>
+                <li>Integrated an email report history tracking system using <strong>PHP</strong>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card-xp reveal">
+            <span class="logo-well">
+              <img src="uw-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">Jan 2022 – Apr 2022</span><span class="xp-loc">Waterloo, ON</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Front-End Developer <span class="at">@ University of Waterloo</span></h3>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Developed a table component in AngularJS for handling large data sets.</li>
+                <li>Improved the UI of a TA hiring system by designing components using HTML and CSS.</li>
+                <li>Streamlined route middleware using .NET Framework and Entity Framework Core.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card card-xp reveal">
+            <span class="logo-well">
+              <img src="ellerca-health-logo.png" alt="" width="56" height="56" />
+            </span>
+            <p class="xp-meta"><span class="xp-dates">May 2021 – Aug 2021</span><span class="xp-loc">Mississauga, ON</span></p>
+            <div class="card-body">
+              <div class="card-head">
+                <h3>Full Stack Developer <span class="at">@ Ellerca Health Corp.</span></h3>
+              </div>
+              <ul class="bullets" role="list">
+                <li>Developed a scheduling platform using <strong>React</strong>, <strong>Express</strong>, and <strong>MongoDB</strong>.</li>
+                <li>Integrated video calling via the <strong>Twilio API</strong>.</li>
+                <li>Added data analytics using the <strong>Segment Analytics API</strong>.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Projects ===== -->
+      <section class="section container" id="projects" aria-labelledby="projects-title">
+        <header class="section-head" data-num="03">
+          <p class="eyebrow">03 — Projects</p>
+          <h2 id="projects-title">Things I built on my own time</h2>
+        </header>
+
+        <div class="projects-grid">
+          <article class="card card-project reveal">
+            <div class="project-top">
+              <h3>
+                <a href="https://github.com/harjotst/ai-anki" target="_blank" rel="noopener">
+                  ai-anki
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+                </a>
+              </h3>
+              <span class="pill pill-accent">Featured</span>
+            </div>
+            <p class="stack-line"><span class="stack-label">Stack</span> FastAPI, Postgres, React, Anthropic API, Fly.io</p>
+            <ul class="bullets" role="list">
+              <li>Built a document-to-flashcard platform that ingests lecture PDFs, slide decks, and spreadsheets and generates structured Anki decks through a two-pass LLM pipeline — a reviewable plan with cost estimate first, then generation; a 52K-token source yields <strong>164 cards for $2.75</strong> in about a minute.</li>
+              <li>Designed deck lineage so decks survive regeneration: each card holds a stable identity, revision claims are verified server-side by fingerprint similarity, and unchanged cards are omitted from export entirely — preserving weeks of spaced-repetition scheduling that a naive re-import would destroy. Covered by <strong>226 tests</strong> against a real containerized Postgres and a real Anki collection.</li>
+              <li>Cut per-run LLM cost by <strong>~33%</strong> by diagnosing a broken prompt-cache lineage, restructured concurrent generation with a warm-up call to convert N−1 cache misses into reads, and bounded spend at four layers including a redeploy-free kill switch.</li>
+            </ul>
+            <a class="card-cta" href="https://github.com/harjotst/ai-anki" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              harjotst/ai-anki
+            </a>
+          </article>
+
+          <article class="card card-project reveal">
+            <div class="project-top">
+              <h3>
+                <a href="https://github.com/harjotst/rubiks-cube-solver" target="_blank" rel="noopener">
+                  Rubik’s Cube Solver
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+                </a>
+              </h3>
+              <span class="pill">Algorithms</span>
+            </div>
+            <p class="stack-line"><span class="stack-label">Focus</span> Search algorithms, pattern databases, parallelism</p>
+            <ul class="bullets" role="list">
+              <li>Implemented Richard E. Korf’s iterative deepening A* algorithm with admissible pattern database heuristics to solve a 3x3 Rubik’s cube in an average of 18 moves.</li>
+              <li>Generated three pattern databases totaling over 160 million entries using parallel breadth-first search, reducing generation time by 85%.</li>
+            </ul>
+            <a class="card-cta" href="https://github.com/harjotst/rubiks-cube-solver" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              harjotst/rubiks-cube-solver
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Skills ===== -->
+      <section class="section container" id="skills" aria-labelledby="skills-title">
+        <header class="section-head" data-num="04">
+          <p class="eyebrow">04 — Skills</p>
+          <h2 id="skills-title">The toolbox</h2>
+        </header>
+
+        <div class="card card-skills reveal">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <ul class="pill-row" role="list">
+              <li class="pill">Python</li><li class="pill">C#</li><li class="pill">C/C++</li><li class="pill">Java</li><li class="pill">JavaScript</li><li class="pill">TypeScript</li><li class="pill">SQL</li><li class="pill">Bash</li><li class="pill">HTML</li><li class="pill">CSS</li><li class="pill">PHP</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Frameworks &amp; Libraries</h3>
+            <ul class="pill-row" role="list">
+              <li class="pill">FastAPI</li><li class="pill">Temporal.io</li><li class="pill">.NET Core</li><li class="pill">Entity Framework</li><li class="pill">React</li><li class="pill">Node.js</li><li class="pill">Angular</li><li class="pill">Pandas</li><li class="pill">Express</li><li class="pill">Playwright</li><li class="pill">jQuery</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Infrastructure &amp; DevOps</h3>
+            <ul class="pill-row" role="list">
+              <li class="pill">Docker</li><li class="pill">Kubernetes</li><li class="pill">Ansible</li><li class="pill">Jenkins</li><li class="pill">Prometheus</li><li class="pill">Azure</li><li class="pill">GCP</li><li class="pill">AWS</li><li class="pill">Fly.io</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Databases &amp; Storage</h3>
+            <ul class="pill-row" role="list">
+              <li class="pill">MySQL (InnoDB Cluster)</li><li class="pill">PostgreSQL (Patroni)</li><li class="pill">Redis (Sentinel/Cluster)</li><li class="pill">ClickHouse</li><li class="pill">MongoDB</li><li class="pill">Neo4j</li><li class="pill">MSSQL</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Concepts &amp; Security</h3>
+            <ul class="pill-row" role="list">
+              <li class="pill">REST</li><li class="pill">OpenAPI/Swagger</li><li class="pill">OIDC</li><li class="pill">OAuth 2.0</li><li class="pill">JWT</li><li class="pill">RBAC</li><li class="pill">Microservices</li><li class="pill">High Availability</li><li class="pill">CVE Remediation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Contact ===== -->
+      <section class="section container" id="contact" aria-labelledby="contact-title">
+        <header class="section-head" data-num="05">
+          <p class="eyebrow">05 — Contact</p>
+          <h2 id="contact-title">Say hello</h2>
+        </header>
+
+        <div class="contact-grid">
+          <article class="card card-contact reveal">
+            <p class="contact-big">
+              The fastest way to reach me is email.
+            </p>
+            <a class="contact-email" href="mailto:harjot.singh.tathgur@gmail.com">
+              harjot.singh.tathgur<wbr />@gmail.com
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </article>
+          <a class="card card-mini reveal" href="https://github.com/harjotst" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+            <span class="link-name">GitHub</span>
+            <span class="link-sub">github.com/harjotst</span>
+          </a>
+          <a class="card card-mini reveal" href="https://linkedin.com/in/harjot-singh-tathgur" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+            <span class="link-name">LinkedIn</span>
+            <span class="link-sub">in/harjot-singh-tathgur</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>© 2026 Harjot Singh Tathgur</p>
+        <p class="footer-note">Plain HTML, CSS and JavaScript. No frameworks, no build step. Set in Sora.</p>
+        <a class="to-top" href="#top">Back to top <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
       </div>
+    </footer>
 
-      <!-- Rubik's Cube Solver -->
-      <div class="project-item">
-        <h3>
-          <a href="https://github.com/harjotst/rubiks-cube-solver" target="_blank" rel="noopener"
-            >Rubik’s Cube Solver</a
-          >
-        </h3>
-        <ul>
-          <li>
-            🧩 Implemented Richard E. Korf’s iterative deepening A* algorithm with
-            admissible pattern database heuristics to solve a 3x3 Rubik’s cube in
-            an average of 18 moves.
-          </li>
-          <li>
-            ⚙️ Generated three pattern databases totaling over 160 million entries
-            using parallel breadth-first search, reducing generation time by 85%.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2>🛠️ Skills</h2>
-      <ul class="skills-list">
-        <li>
-          <strong>Languages:</strong> Python, C#, C/C++, Java, JavaScript,
-          TypeScript, SQL, Bash, HTML, CSS, PHP
-        </li>
-        <li>
-          <strong>Frameworks &amp; Libraries:</strong> FastAPI, Temporal.io,
-          .NET Core, Entity Framework, React, Node.js, Angular, Pandas,
-          Express, Playwright, jQuery
-        </li>
-        <li>
-          <strong>Infrastructure &amp; DevOps:</strong> Docker, Kubernetes,
-          Ansible, Jenkins, Prometheus, Azure, GCP, AWS, Fly.io
-        </li>
-        <li>
-          <strong>Databases &amp; Storage:</strong> MySQL (InnoDB Cluster),
-          PostgreSQL (Patroni), Redis (Sentinel/Cluster), ClickHouse, MongoDB,
-          Neo4j, MSSQL
-        </li>
-        <li>
-          <strong>Concepts &amp; Security:</strong> REST, OpenAPI/Swagger,
-          OIDC, OAuth 2.0, JWT, RBAC, Microservices, High Availability, CVE
-          Remediation
-        </li>
-      </ul>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2>📞 Contact Me (coming soon...)</h2>
-      <!-- <form id="contact-form">
-        <label for="contact-name">👤 Name (Optional)</label>
-        <input type="text" id="contact-name" name="name" />
-
-        <label for="contact-email">✉️ Email (Optional)</label>
-        <input type="email" id="contact-email" name="email" />
-
-        <label for="contact-message">💬 Message</label>
-        <textarea id="contact-message" name="message" required></textarea>
-
-        <button type="submit">Send 📤</button>
-      </form> -->
-    </section>
-
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
