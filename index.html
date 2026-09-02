@@ -49,7 +49,9 @@
       <h1 id="name">Harjot Singh Tathgur
       </h1>
       <p>
-        👋 Hey there! I'm a Software Engineer and I'm studying Computer Science.
+        👋 Hey there! I'm a Software Engineer at Tesla, where I was the founding
+        engineer on the internal Database-as-a-Service platform. I graduated from
+        the University of Waterloo with a Bachelor of Computer Science in 2025.
       </p>
 
       <!-- Social Media Buttons -->
@@ -57,10 +59,10 @@
         <a href="https://github.com/harjotst" target="_blank"
           ><div class="social-icon" id="github-logo"></div
         ></a>
-        <a href="https://linkedin.com/in/harjot-tathgur" target="_blank"
+        <a href="https://linkedin.com/in/harjot-singh-tathgur" target="_blank"
           ><div class="social-icon" id="linkedin-logo"></div
         ></a>
-        <a href="mailto:harjottathgur1@gmail.com" style="font-size: 32px">✉️</a>
+        <a href="mailto:harjot.singh.tathgur@gmail.com" style="font-size: 32px">✉️</a>
       </div>
     </header>
 
@@ -71,7 +73,11 @@
         <img src="./uw-logo.png" alt="University of Waterloo Logo" />
         <div class="education-details">
           <h3>University of Waterloo</h3>
-          <p>Bachelor of Computer Science (Sept 2020 - Apr 2025)</p>
+          <p>
+            Bachelor of Computer Science, Honours Co-operative Program
+            (Sep 2020 – Jun 2025)
+          </p>
+          <p>🏅 GPA: 3.7/4.0</p>
           <p>
             📚 Coursework: Artificial Intelligence, Machine Learning, Operating
             Systems, Computer Networks, Distributed Systems, Concurrency &
@@ -85,33 +91,95 @@
     <section id="experience">
       <h2>💼 Experience</h2>
 
-      <!-- Tesla Experience -->
+      <!-- Tesla (Software Engineer) Experience -->
       <div class="experience-item">
         <img src="tesla-logo.png" alt="Tesla Logo" />
         <div class="experience-details">
           <h3>Software Engineer @ Tesla</h3>
-          <p>Fremont, CA | Jan 2024 – Present</p>
+          <p>Fremont, CA | Jul 2025 – Present</p>
           <ul>
             <li>
-              🚀 Built a system for managing database servers and virtual
-              machines remotely.
+              🏗️ Founding engineer on Tesla's internal Database-as-a-Service
+              platform (<strong>DPCP</strong>): took it from zero to
+              production, now managing <strong>250+ database clusters</strong>
+              and cutting provisioning from multi-day ticket queues to
+              <strong>under 30 minutes</strong>.
             </li>
             <li>
-              🔒 Developed a secure API wrapper for Jira using
-              <strong>C#</strong> and <strong>ASP.NET</strong>, enhancing
-              security for internal applications.
+              🔄 Built the full self-service lifecycle — create, batch-create,
+              decommission, scale nodes — across
+              <strong>MySQL InnoDB Cluster</strong>,
+              <strong>PostgreSQL Patroni</strong>,
+              <strong>Redis Sentinel/Cluster/Enterprise</strong>,
+              <strong>ClickHouse</strong>, <strong>MongoDB</strong>, and
+              <strong>Neo4j</strong> on <strong>FastAPI</strong> and
+              <strong>Temporal.io</strong>.
             </li>
             <li>
-              🤖 Automated ticket monitoring and notifications, improving
-              response time and efficiency.
+              🛡️ Ran fleet-wide maintenance with
+              <strong>zero customer downtime</strong>: major OS version
+              upgrades, package updates, and CVE remediation across the
+              production database fleet, orchestrated through HA failover so
+              clusters stayed available throughout.
             </li>
             <li>
-              ⚡ Created custom CLIs for data migration, saving man-hours and
-              enhancing performance.
+              🔧 Root-caused and fixed platform reliability failures — an
+              <strong>Ansible</strong> child-process pipe deadlock that hung
+              deploys for hours, and Temporal payload blowups resolved via
+              count-only pagination — and cut integration-test wall time from
+              <strong>~24 hours to 10–15 minutes</strong> with per-file
+              fan-out.
             </li>
             <li>
-              ✅ Integrated automated tests into CI/CD pipelines using
-              <strong>Playwright</strong> in <strong>C#</strong>.
+              🆔 Designed platform-wide identity contracts: a transactional
+              cluster ID feeding inventory and monitoring pipelines, and one
+              canonical name threaded through engines, load balancers, DNS, and
+              TLS.
+            </li>
+            <li>
+              📦 Moved deployment playbooks into a runtime-loaded repo with
+              resolved-SHA audit trails, letting database engineers ship
+              install-logic changes without waiting on a control-plane release.
+            </li>
+            <li>
+              🔒 Hardened authorization fail-closed: replaced hardcoded
+              security groups with a directory-backed privilege model, closed
+              DNS-zone enumeration and credential-leak paths, and replaced
+              plaintext credentials with one-time secret links.
+            </li>
+            <li>
+              🤝 Reviewed <strong>50 teammate pull requests</strong> as
+              frequently the sole approver, and authored a nine-PR enablement
+              series that unblocked a teammate's load-balancer integration.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tesla (Software Engineer Intern) Experience -->
+      <div class="experience-item">
+        <img src="tesla-logo.png" alt="Tesla Logo" />
+        <div class="experience-details">
+          <h3>Software Engineer Intern @ Tesla</h3>
+          <p>Fremont, CA | Jan 2024 – Apr 2025</p>
+          <ul>
+            <li>
+              ⚡ Engineered a <strong>Python</strong> CLI to migrate
+              <strong>500,000+ Jira records</strong> into a structured
+              <strong>MySQL</strong> schema with 99.9% data integrity,
+              eliminating 200+ hours of manual data entry.
+            </li>
+            <li>
+              ✅ Containerized 750+ <strong>Playwright</strong> tests with
+              <strong>Docker</strong> in <strong>Jenkins</strong> CI/CD,
+              reducing regression-detection time by <strong>30%</strong> and
+              faulty deployments by <strong>40%</strong>.
+            </li>
+            <li>
+              🔐 Developed a secure <strong>ASP.NET Core</strong> REST API
+              integrating Jira with <strong>Microsoft Entra ID</strong>,
+              enforcing RBAC to reduce unauthorized application access by
+              <strong>90%</strong>.
             </li>
           </ul>
         </div>
@@ -121,17 +189,20 @@
       <div class="experience-item">
         <img src="manulife-logo.png" alt="Manulife Logo" />
         <div class="experience-details">
-          <h3>Software Developer @ Manulife Financial Corporation</h3>
+          <h3>Software Developer Intern @ Manulife Financial</h3>
           <p>Waterloo, ON | May 2023 – Aug 2023</p>
           <ul>
             <li>
-              🛠️ Automated the transition of report generators to a centralized
-              system.
+              📉 Analyzed dependency metadata for 500+ <strong>MSSQL</strong>
+              stored procedures using <strong>Python</strong>, eliminating 370
+              redundant procedures and cutting database CPU utilization by
+              <strong>70% ($12K/month)</strong>.
             </li>
             <li>
-              🔑 Implemented authentication and authorization using
-              <strong>Active Directory</strong> and
-              <strong>Entity Framework Core</strong>.
+              🔑 Integrated Single Sign-On via <strong>ADFS</strong> into a
+              legacy <strong>.NET</strong> application, strengthening
+              authentication and reducing access-related support tickets by
+              <strong>75%</strong>.
             </li>
           </ul>
         </div>
@@ -210,22 +281,63 @@
     <!-- Projects Section -->
     <section id="projects">
       <h2>🚀 Projects</h2>
-      <h3>
-        <a href="https://github.com/harjotst/rubiks-cube-solver" target="_blank"
-          >Rubik’s Cube Solver</a
-        >
-      </h3>
-      <ul>
-        <li>
-          🧩 Implemented Richard E. Korf’s iterative deepening A* algorithm with
-          admissible pattern database heuristics to solve a 3x3 Rubik’s cube in
-          an average of 18 moves.
-        </li>
-        <li>
-          ⚙️ Generated three pattern databases totaling over 160 million entries
-          using parallel breadth-first search, reducing generation time by 85%.
-        </li>
-      </ul>
+
+      <!-- ai-anki -->
+      <div class="project-item">
+        <h3>
+          <a href="https://github.com/harjotst/ai-anki" target="_blank"
+            >ai-anki</a
+          >
+        </h3>
+        <p class="project-stack">
+          FastAPI, Postgres, React, Anthropic API, Fly.io
+        </p>
+        <ul>
+          <li>
+            📚 Built a document-to-flashcard platform that ingests lecture
+            PDFs, slide decks, and spreadsheets and generates structured Anki
+            decks through a two-pass LLM pipeline — a reviewable plan with cost
+            estimate first, then generation; a 52K-token source yields
+            <strong>164 cards for $2.75</strong> in about a minute.
+          </li>
+          <li>
+            🧬 Designed deck lineage so decks survive regeneration: each card
+            holds a stable identity, revision claims are verified server-side
+            by fingerprint similarity, and unchanged cards are omitted from
+            export entirely — preserving weeks of spaced-repetition scheduling
+            that a naive re-import would destroy. Covered by
+            <strong>226 tests</strong> against a real containerized Postgres
+            and a real Anki collection.
+          </li>
+          <li>
+            💸 Cut per-run LLM cost by <strong>~33%</strong> by diagnosing a
+            broken prompt-cache lineage, restructured concurrent generation
+            with a warm-up call to convert N−1 cache misses into reads, and
+            bounded spend at four layers including a redeploy-free kill switch.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Rubik's Cube Solver -->
+      <div class="project-item">
+        <h3>
+          <a href="https://github.com/harjotst/rubiks-cube-solver" target="_blank"
+            >Rubik’s Cube Solver</a
+          >
+        </h3>
+        <p class="project-stack">C++</p>
+        <ul>
+          <li>
+            🧩 Implemented Richard E. Korf’s iterative deepening A* algorithm with
+            admissible pattern database heuristics to solve a 3x3 Rubik’s cube in
+            an average of 18 moves.
+          </li>
+          <li>
+            ⚙️ Generated three pattern databases totaling over 160 million entries
+            using parallel breadth-first search, reducing generation time by 85%.
+          </li>
+        </ul>
+      </div>
     </section>
 
     <!-- Skills Section -->
@@ -233,18 +345,27 @@
       <h2>🛠️ Skills</h2>
       <ul class="skills-list">
         <li>
-          <strong>Programming Languages:</strong> C, C++, C#, Python,
-          JavaScript, TypeScript, uC++
+          <strong>Languages:</strong> Python, C#, C/C++, Java, JavaScript,
+          TypeScript, SQL, Bash, HTML, CSS, PHP
         </li>
         <li>
-          <strong>Libraries and Frameworks:</strong> React, AngularJS, Angular,
-          Express, Mongoose, .NET Framework, ASP.NET Core, Entity Framework
-          Core, Microsoft Graph API, Microsoft Kiota, Playwright
+          <strong>Frameworks &amp; Libraries:</strong> FastAPI, Temporal.io,
+          .NET Core, Entity Framework, React, Node.js, Angular, Pandas,
+          Express, Playwright, jQuery
         </li>
         <li>
-          <strong>Technologies:</strong> Docker, Kubernetes, Node.js, Git,
-          Microsoft Entra ID, Google Cloud Platform, MySQL, PostgreSQL,
-          Microsoft SQL Server, MongoDB
+          <strong>Infrastructure &amp; DevOps:</strong> Docker, Kubernetes,
+          Ansible, Jenkins, Prometheus, Azure, GCP, AWS, Fly.io
+        </li>
+        <li>
+          <strong>Databases &amp; Storage:</strong> MySQL (InnoDB Cluster),
+          PostgreSQL (Patroni), Redis (Sentinel/Cluster), ClickHouse, MongoDB,
+          Neo4j, MSSQL
+        </li>
+        <li>
+          <strong>Concepts &amp; Security:</strong> REST, OpenAPI/Swagger,
+          OIDC, OAuth 2.0, JWT, RBAC, Microservices, High Availability, CVE
+          Remediation
         </li>
       </ul>
     </section>
