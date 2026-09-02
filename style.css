@@ -239,6 +239,17 @@ header p {
     font-size: 1.2em;
 }
 
+/* Keep the intro to a readable measure on wide screens; the <=790px rule
+   above keeps its own margins on phones. */
+@media (min-width: 791px) {
+    header p {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1em;
+    }
+}
+
 .social-media {
     display: flex;
     align-items: center;

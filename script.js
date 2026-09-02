@@ -57,10 +57,13 @@ navLinks.querySelectorAll("a").forEach((link) => {
 
 // Sliding-in Animations for Sections
 const sections = document.querySelectorAll("section");
+// Reveal an element as soon as any part of it scrolls into view (minus a
+// small bottom inset). A fixed 10% threshold can never be reached by a section
+// taller than ten viewports, which the Experience section is on small phones.
 const options = {
   root: null,
-  threshold: 0.1,
-  rootMargin: "0px",
+  threshold: 0,
+  rootMargin: "0px 0px -60px 0px",
 };
 
 const observer = new IntersectionObserver(function (entries, observer) {
