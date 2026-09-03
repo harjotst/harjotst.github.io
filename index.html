@@ -420,6 +420,43 @@
               harjotst/speed-game<span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </article>
+
+          <article class="card card-project card-wide reveal">
+            <div class="project-body">
+              <div class="project-top">
+                <h3>
+                  <a href="https://harjotst.github.io/rubiks-cube-solver/" target="_blank" rel="noopener">
+                    Rubik’s Cube Solver<span class="visually-hidden"> (opens in a new tab)</span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+                  </a>
+                </h3>
+                <span class="pill pill-accent">Live demo</span>
+              </div>
+              <p class="stack-line"><span class="stack-label">Stack</span> JavaScript (ES modules), Web Workers, CSS 3D transforms, Playwright, GitHub Pages</p>
+              <ul class="bullets" role="list">
+                <li>Rebuilt my C++ and Python Korf solver as a dependency-free web app: Kociemba&rsquo;s <strong>two-phase IDA*</strong> over four pattern databases (<strong>4 million entries</strong>) that a Web Worker generates in about a second when the page loads, solving any cube in <strong>about 20 moves</strong>, usually in well under a second.</li>
+                <li>Built an interactive <strong>3D cube</strong> in pure CSS transforms with animated turns, full move notation, and a paintable net that explains exactly why an impossible cube can&rsquo;t exist &mdash; wrong sticker counts, a twisted corner, a flipped edge, or two swapped pieces &mdash; plus a step-through solution player.</li>
+                <li>Verified the cube model against Kociemba&rsquo;s reference move tables and covered it with <strong>56 unit tests</strong> and <strong>18 Playwright end-to-end tests</strong>, including a pixel comparison proving every layer animation ends exactly where the model repaints; deployed to GitHub Pages by GitHub Actions on every push.</li>
+              </ul>
+              <div class="card-ctas">
+                <a class="card-cta" href="https://harjotst.github.io/rubiks-cube-solver/" target="_blank" rel="noopener">
+                  Try it live<span class="visually-hidden"> (opens in a new tab)</span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+                </a>
+                <a class="card-cta" href="https://github.com/harjotst/rubiks-cube-solver" target="_blank" rel="noopener">
+                  <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  harjotst/rubiks-cube-solver<span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </div>
+            </div>
+            <a class="project-art" href="https://harjotst.github.io/rubiks-cube-solver/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+              <span class="mini-cube">
+                <span class="s c4"></span><span class="s c2"></span><span class="s c1"></span>
+                <span class="s c3"></span><span class="s c0"></span><span class="s c5"></span>
+                <span class="s c1"></span><span class="s c4"></span><span class="s c2"></span>
+              </span>
+            </a>
+          </article>
         </div>
       </section>
 
